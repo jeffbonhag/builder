@@ -1,0 +1,12 @@
+FROM centos:centos7
+
+RUN yum -y update
+RUN yum -y install wget tar gcc make gcc-c++
+RUN wget http://caca.zoy.org/files/libcaca/libcaca-0.99.beta19.tar.gz
+RUN tar xvf libcaca-0.99.beta19.tar.gz
+WORKDIR libcaca-0.99.beta19
+RUN ./configure
+RUN make
+
+CMD ["/usr/bin/tail", "-f", "/libcaca-0.99.beta19/README"]
+
